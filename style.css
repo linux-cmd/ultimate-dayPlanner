@@ -1,0 +1,320 @@
+/* Reset & Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Google Tasks–Inspired Dark Color Scheme */
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: #202124; /* Lighter black background */
+  color: #e8eaed;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  background: #303134; /* Darker than background */
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #5f6368;
+  position: relative;
+}
+header h1 {
+  font-size: 28px;
+  letter-spacing: 1px;
+  color: #e8eaed;
+  cursor: pointer;
+}
+nav button {
+  margin: 0 5px;
+  padding: 8px 14px;
+  background: #4285F4;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+nav button:hover {
+  background: #357ae8;
+  transform: translateY(-2px);
+}
+
+/* View Modes */
+.view-mode {
+  flex: 1;
+  padding: 15px;
+}
+
+/* CALENDAR VIEW */
+.calendar-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.calendar-controls button {
+  background: #4285F4;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.calendar-controls button:hover {
+  background: #357ae8;
+}
+.calendar-controls span {
+  font-size: 20px;
+  font-weight: bold;
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+.day-cell {
+  background: #303134;
+  border: 1px solid #5f6368;
+  border-radius: 4px;
+  padding: 5px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s;
+}
+.day-cell:hover {
+  transform: scale(1.02);
+}
+.day-header {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+.cell-content {
+  font-size: 11px;
+  overflow-y: auto;
+  flex: 1;
+}
+.event-item, .task-item {
+  background: #3c4043;
+  padding: 2px 4px;
+  margin: 2px 0;
+  border-radius: 3px;
+  word-break: break-all;
+  transition: background 0.3s;
+}
+.event-item:hover, .task-item:hover {
+  background: #5f6368;
+}
+.task-item.completed {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+.delete-btn {
+  background: #ea4335;
+  border: none;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-size: 10px;
+  margin-left: 4px;
+}
+.delete-btn:hover {
+  background: #c5221f;
+}
+
+/* TASKS VIEW */
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.tasks-header h2 {
+  font-size: 24px;
+}
+.tasks-actions button {
+  background: #4285F4;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: background 0.3s;
+}
+.tasks-actions button:hover {
+  background: #357ae8;
+}
+.lists-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.list-card {
+  background: #303134;
+  border: 1px solid #5f6368;
+  border-radius: 6px;
+  padding: 10px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  animation: fadeIn 0.5s;
+}
+.list-card h3 {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.list-card h3 .star {
+  color: #fbbc04;
+  font-size: 18px;
+}
+.list-delete-btn {
+  background: #ea4335;
+  border: none;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 10px;
+  transition: background 0.3s;
+}
+.list-delete-btn:hover {
+  background: #c5221f;
+}
+.task-group {
+  margin-top: 10px;
+}
+.task-group h4 {
+  font-size: 16px;
+  border-bottom: 1px solid #5f6368;
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+}
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+.task-list li {
+  background: #3c4043;
+  padding: 6px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.2s;
+}
+.task-list li:hover {
+  transform: translateX(4px);
+}
+.task-list li input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+/* Completed Task Animation */
+@keyframes taskComplete {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(0); opacity: 0; }
+}
+.completed-animation {
+  animation: taskComplete 0.5s forwards;
+}
+
+/* MODAL STYLES */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 200;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background-color: rgba(0,0,0,0.8);
+  animation: fadeIn 0.3s;
+}
+.modal-content {
+  background-color: #303134;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+.modal-content h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #e8eaed;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #ccc;
+}
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #5f6368;
+  border-radius: 4px;
+  background: #424345;
+  color: #e8eaed;
+  transition: border 0.3s;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border: 1px solid #4285F4;
+  outline: none;
+}
+.modal-content button {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(45deg, #4285F4, #357ae8);
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.modal-content button:hover {
+  background: linear-gradient(45deg, #357ae8, #2a65c7);
+}
+.close-btn {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #e8eaed;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ultimate Dark Planner</title>
+  <link rel="icon" type="image/png" sizes="256x256" href="assets/favicon.png"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header id="app-header">
+      <h1>Ultimate Dark Planner</h1>
+      <nav>
+        <button id="nav-calendar">Calendar</button>
+        <button id="nav-tasks">Tasks</button>
+        <button id="toggle-starred">Show Starred</button>
+      </nav>
+    </header>
+
+    <!-- CALENDAR VIEW: Full-page calendar showing events and tasks -->
+    <div id="calendar-view" class="view-mode">
+      <div class="calendar-controls">
+        <button id="prev-month">&laquo;</button>
+        <span id="month-year"></span>
+        <button id="next-month">&raquo;</button>
+        <button id="add-event-btn">+ Add Event</button>
+      </div>
+      <div class="calendar-grid" id="calendar-grid">
+        <!-- Day cells will be generated here -->
+      </div>
+    </div>
+
+    <!-- TASKS VIEW: Multi‑list display -->
+    <div id="tasks-view" class="view-mode" style="display: none;">
+      <div class="tasks-header">
+        <h2>Your Task Lists</h2>
+        <div class="tasks-actions">
+          <button id="add-task-btn">+ Add Task</button>
+          <button id="add-list-btn">+ Add List</button>
+        </div>
+      </div>
+      <div class="lists-container" id="lists-container">
+        <!-- List cards will be generated here -->
+      </div>
+    </div>
+
+    <!-- Modal for adding an Event -->
+    <div id="event-modal" class="modal">
+      <div class="modal-content">
+         <span class="close-btn" data-close="event-modal">&times;</span>
+         <form id="event-form">
+           <h3>Add Event</h3>
+           <div class="form-group">
+             <label for="event-date">Date:</label>
+             <input type="date" id="event-date" required>
+           </div>
+           <div class="form-group">
+             <label for="event-start">Start Time:</label>
+             <input type="time" id="event-start" required>
+           </div>
+           <div class="form-group">
+             <label for="event-end">End Time:</label>
+             <input type="time" id="event-end" required>
+           </div>
+           <div class="form-group">
+             <label for="event-desc">Description:</label>
+             <textarea id="event-desc" rows="3" required></textarea>
+           </div>
+           <button type="submit">Save Event</button>
+         </form>
+      </div>
+    </div>
+
+    <!-- Modal for adding a Task -->
+    <div id="task-modal" class="modal">
+      <div class="modal-content">
+         <span class="close-btn" data-close="task-modal">&times;</span>
+         <form id="task-form">
+           <h3>Add Task</h3>
+           <div class="form-group">
+             <label for="task-list">List:</label>
+             <select id="task-list" required>
+               <!-- Options will be populated dynamically -->
+             </select>
+           </div>
+           <div class="form-group">
+             <label for="task-date">Due Date:</label>
+             <input type="date" id="task-date" required>
+           </div>
+           <div class="form-group">
+             <label for="task-desc">Description:</label>
+             <textarea id="task-desc" rows="2" required></textarea>
+           </div>
+           <div class="form-group">
+             <label for="task-starred">Starred Task:</label>
+             <input type="checkbox" id="task-starred">
+           </div>
+           <button type="submit">Save Task</button>
+         </form>
+      </div>
+    </div>
+
+    <!-- Modal for adding a New List -->
+    <div id="new-list-modal" class="modal">
+      <div class="modal-content">
+         <span class="close-btn" data-close="new-list-modal">&times;</span>
+         <form id="new-list-form">
+           <h3>Add New Task List</h3>
+           <div class="form-group">
+             <label for="list-name">List Name:</label>
+             <input type="text" id="list-name" required>
+           </div>
+           <div class="form-group">
+             <label for="list-starred">Starred List:</label>
+             <input type="checkbox" id="list-starred">
+           </div>
+           <button type="submit">Save List</button>
+         </form>
+      </div>
+    </div>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
